@@ -1,4 +1,3 @@
-<!-- src/components/TaskList.vue -->
 <template>
   <ul>
     <li v-for="task in tasks" :key="task.id">
@@ -11,11 +10,18 @@
 export default {
   data() {
     return {
-      tasks: [
-        { id: 1, title: 'Einkaufen gehen', done: false },
-        { id: 2, title: 'Hausaufgaben machen', done: true }
-      ]
+      tasks: []
     };
+  },
+  mounted() {
+    fetch('https://todo-backend-1-uwrt.onrender.com/tasks')
+      .then(response => response.json())
+      .then(data => {
+        this.tasks = data;
+      })
+      .catch(error => {
+        console.error('Fehler beim Laden der Tasks:', error);
+      });
   }
 };
-</script>
+</script> 
