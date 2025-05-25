@@ -15,7 +15,7 @@ export default {
   },
   async mounted() {
     try {
-      const response = await fetch('https://todo-backend-1-uwrt.onrender.com');
+      const response = await fetch('https://todo-backend-1-uwrt.onrender.com/tasks');
       const data = await response.json();
       this.tasks = data;
     } catch (error) {
