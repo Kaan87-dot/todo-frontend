@@ -13,15 +13,14 @@ export default {
       tasks: []
     };
   },
-  mounted() {
-    fetch('https://todo-backend-1-uwrt.onrender.com/tasks')
-      .then(response => response.json())
-      .then(data => {
-        this.tasks = data;
-      })
-      .catch(error => {
-        console.error('Fehler beim Laden der Tasks:', error);
-      });
+  async mounted() {
+    try {
+      const response = await fetch('https://todo-backend-1-uwrt.onrender.com');
+      const data = await response.json();
+      this.tasks = data;
+    } catch (error) {
+      console.error('Fehler beim Laden der Aufgaben:', error);
+    }
   }
 };
-</script> 
+</script>
